@@ -1256,6 +1256,7 @@ static std::string extra_params_as_string(const std::vector<std::string>& extra_
 }
 #endif
 
+#ifndef CONFIG_HW_DISK_ENCRYPTION
 // Only adds parameters if the property is set.
 static void add_sector_size_param(std::vector<std::string>* extra_params_vec) {
     constexpr char DM_CRYPT_SECTOR_SIZE[] = "ro.crypto.fde_sector_size";
@@ -1270,6 +1271,7 @@ static void add_sector_size_param(std::vector<std::string>* extra_params_vec) {
         extra_params_vec->emplace_back("iv_large_sectors");
     }
 }
+#endif
 
 static int create_crypto_blk_dev(struct crypt_mnt_ftr* crypt_ftr, const unsigned char* master_key,
                                  const char* real_blk_name, char* crypto_blk_name, const char* name,
